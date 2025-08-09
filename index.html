@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentos Encantados - Invitaciones Digitales</title>
+    <!-- Incluye Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fuentes para un diseño elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Estilos personalizados para el contenedor de paquetes */
+        .packages-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+    </style>
+</head>
+<body class="bg-[#fcf7f9] flex flex-col min-h-screen text-[#4f464e]">
+
+    <!-- Sección de Héroe -->
+    <header class="relative overflow-hidden bg-[#fcf7f9] py-24 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center text-center rounded-b-3xl shadow-lg">
+        <div class="relative z-10">
+            <h1 class="hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-4 text-[#bf8e97]">Momentos Encantados</h1>
+            <p class="text-lg md:text-xl max-w-2xl mb-8 font-medium text-gray-700">Crea recuerdos inolvidables con nuestras invitaciones digitales y de video personalizadas.</p>
+            <a href="#contacto" class="bg-[#bf8e97] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 transform hover:scale-105">
+                ¡Empieza tu proyecto!
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto p-4 md:p-8 flex-grow">
+
+        <!-- Sección de Servicios -->
+        <section id="servicios" class="my-12 p-6 bg-white rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#bf8e97]">Nuestros Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tarjeta de Servicio 1 -->
+                <div class="bg-[#fcf7f9] p-6 rounded-xl shadow-md border-t-4 border-[#cdb1b8] text-center">
+                    <div class="text-4xl mb-3 text-[#bf8e97]">💌</div>
+                    <h3 class="text-xl font-semibold hero-title text-[#a37a85] mb-2">Invitaciones Digitales</h3>
+                    <p class="text-sm text-gray-700">Diseños elegantes y 100% personalizados para cualquier ocasión: bodas, quince años, cumpleaños y más.</p>
+                </div>
+                <!-- Tarjeta de Servicio 2 -->
+                <div class="bg-[#fcf7f9] p-6 rounded-xl shadow-md border-t-4 border-[#cdb1b8] text-center">
+                    <div class="text-4xl mb-3 text-[#bf8e97]">🎬</div>
+                    <h3 class="text-xl font-semibold hero-title text-[#a37a85] mb-2">Video Invitaciones</h3>
+                    <p class="text-sm text-gray-700">Invitaciones animadas con música y efectos, perfectas para redes sociales y WhatsApp.</p>
+                </div>
+                <!-- Tarjeta de Servicio 3 -->
+                <div class="bg-[#fcf7f9] p-6 rounded-xl shadow-md border-t-4 border-[#cdb1b8] text-center">
+                    <div class="text-4xl mb-3 text-[#bf8e97]">🎨</div>
+                    <h3 class="text-xl font-semibold hero-title text-[#a37a85] mb-2">Paquetes Completos</h3>
+                    <p class="text-sm text-gray-700">Video + invitación digital + tarjeta de agradecimiento. Todo a juego para tu evento especial.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Paquetes -->
+        <section id="paquetes" class="my-12 p-6 bg-[#f5f0f3] rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#a37a85]">Nuestros Paquetes</h2>
+            <div class="flex flex-wrap justify-center gap-6 text-center packages-grid">
+                <!-- Paquete Invitación Estática -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Invitación Estática (Imagen)</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$69 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Diseño único de imagen para tu evento.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Diseño de imagen personalizado</li>
+                        <li class="mb-1">Perfecto para compartir por redes sociales</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Invitaci%C3%B3n%20Est%C3%A1tica" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Invitación Interactiva (PDF) -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Invitación Interactiva (PDF)</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$119 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Invitación en formato PDF con 1 botón de ubicación y 1 de confirmación de asistencia.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Invitación en formato PDF</li>
+                        <li class="mb-1">Botón de ubicación</li>
+                        <li class="mb-1">Botón de confirmación de asistencia</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Invitaci%C3%B3n%20Interactiva%20(PDF)" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Video Invitación -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm scale-105 transform">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Video Invitación</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$139 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Video dinámico (aprox. 30 seg. a 1 min.) con diseño personalizado.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Diseño personalizado</li>
+                        <li class="mb-1">Duración de 30 segundos a 1 minuto</li>
+                        <li class="mb-1">Ideal para redes sociales y WhatsApp</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Video%20Invitaci%C3%B3n" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Video Invitación Interactiva -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Video Invitación Interactiva</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$159 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Video invitación con 1 botón de ubicación y 1 de confirmación de asistencia.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Video con diseño personalizado</li>
+                        <li class="mb-1">Botón de ubicación</li>
+                        <li class="mb-1">Botón de confirmación de asistencia</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Video%20Invitaci%C3%B3n%20Interactiva" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Web Básica -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Básica</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$179 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Página web del evento con funciones esenciales.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Música</li>
+                        <li class="mb-1">1 Botón de ubicación</li>
+                        <li class="mb-1">1 Botón de confirmación</li>
+                        <li class="mb-1">Cuenta Regresiva</li>
+                        <li class="mb-1">Datos básicos del evento</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20B%C3%A1sica" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Web Bronce -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Bronce</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$329 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Página web completa para tu evento con funciones interactivas.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Frase de su elección</li>
+                        <li class="mb-1">Música</li>
+                        <li class="mb-1">2 Botones de ubicación</li>
+                        <li class="mb-1">1 Botón de confirmación</li>
+                        <li class="mb-1">Cuenta Regresiva</li>
+                        <li class="mb-1">Nombre de papás</li>
+                        <li class="mb-1">Lluvia de sobres</li>
+                        <li class="mb-1">Galería de fotos</li>
+                        <li class="mb-1">Código de vestimenta</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Bronce" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Web Plata -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Plata</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$499 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Página web avanzada para tu evento con pases digitales y más.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Frase de su elección</li>
+                        <li class="mb-1">Música</li>
+                        <li class="mb-1">2 Botones de ubicación</li>
+                        <li class="mb-1">1 Botón de confirmación</li>
+                        <li class="mb-1">Cuenta Regresiva</li>
+                        <li class="mb-1">Pases digitales para 150 personas</li>
+                        <li class="mb-1">Lluvia de sobres</li>
+                        <li class="mb-1">Galería de fotos</li>
+                        <li class="mb-1">Código de vestimenta</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Plata" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Web Oro -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Oro</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$659 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">Página web premium con galería de fotos dinámica y opciones de hospedaje.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Frase de su elección</li>
+                        <li class="mb-1">Música</li>
+                        <li class="mb-1">2 Botones de ubicación</li>
+                        <li class="mb-1">1 Botón de confirmación</li>
+                        <li class="mb-1">Pases digitales ilimitados</li>
+                        <li class="mb-1">Cuenta regresiva</li>
+                        <li class="mb-1">Lluvia de sobres/mesa de regalos</li>
+                        <li class="mb-1">Galería de fotos dinámica</li>
+                        <li class="mb-1">Opciones de hospedaje</li>
+                        <li class="mb-1">Código de vestimenta</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Oro" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+                <!-- Paquete Web Oro Plus -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
+                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Oro Plus</h3>
+                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$799 pesos</p>
+                    <p class="text-sm text-gray-700 italic mb-3">El paquete más completo con QR de acceso y para subir fotos el día del evento.</p>
+                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
+                        <li class="mb-1">Frase de su elección</li>
+                        <li class="mb-1">Música</li>
+                        <li class="mb-1">2 Botones de ubicación</li>
+                        <li class="mb-1">1 Botón de confirmación</li>
+                        <li class="mb-1">Pases digitales ilimitados</li>
+                        <li class="mb-1">Cuenta regresiva</li>
+                        <li class="mb-1">Lluvia de sobres/mesa de regalos</li>
+                        <li class="mb-1">Galería de fotos dinámica</li>
+                        <li class="mb-1">Opciones de hospedaje</li>
+                        <li class="mb-1">Código de vestimenta</li>
+                        <li class="mb-1">QR de acceso al evento</li>
+                        <li class="mb-1">QR de fotos para subir fotos el día del evento</li>
+                    </ul>
+                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Oro%20Plus" 
+                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                        Más Información
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Portafolio -->
+        <section id="portafolio" class="my-12 p-6 bg-[#f5f0f3] rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#a37a85]">Nuestro Portafolio</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Galería de imágenes (placeholders) -->
+                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x600/fcf7f9/876673?text=Invitacion+1" alt="Ejemplo de invitación digital" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-base font-bold hero-title">Invitación de Boda</span>
+                    </div>
+                </div>
+                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x600/fcf7f9/876673?text=Invitacion+2" alt="Ejemplo de invitación de 15 años" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-base font-bold hero-title">Invitación de XV Años</span>
+                    </div>
+                </div>
+                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x600/fcf7f9/876673?text=Invitacion+3" alt="Ejemplo de invitación de cumpleaños" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-base font-bold hero-title">Invitación de Cumpleaños</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección "Cómo Funciona" -->
+        <section id="como-funciona" class="my-12 p-6 bg-white rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#bf8e97]">¿Cómo Funciona?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 bg-[#fcf7f9] text-[#bf8e97] rounded-full flex items-center justify-center text-xl font-bold mb-2 border-2 border-[#cdb1b8]">1</div>
+                    <h3 class="text-base font-semibold mb-1">Elige tu diseño</h3>
+                    <p class="text-xs text-gray-700">Explora nuestro portafolio y elige el estilo que más te guste o cuéntanos tu idea.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 bg-[#fcf7f9] text-[#bf8e97] rounded-full flex items-center justify-center text-xl font-bold mb-2 border-2 border-[#cdb1b8]">2</div>
+                    <h3 class="text-base font-semibold mb-1">Personalizamos</h3>
+                    <p class="text-xs text-gray-700">Te pediremos los datos del evento, fotos y la música para crear un diseño único para ti, y una vez listo se te compartirá evidencia.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 bg-[#fcf7f9] text-[#bf8e97] rounded-full flex items-center justify-center text-xl font-bold mb-2 border-2 border-[#cdb1b8]">3</div>
+                    <h3 class="text-base font-semibold mb-1">Realiza tu pago y recibe</h3>
+                    <p class="text-xs text-gray-700">Una vez aprobado el diseño, realiza tu pago para recibir tu invitación en formato digital o video, lista para ser compartida.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="my-12 p-6 bg-[#f5f0f3] rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#a37a85]">Contáctanos</h2>
+            <form id="contactForm" class="max-w-lg mx-auto bg-white p-6 rounded-xl shadow-md">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-semibold mb-1">Nombre Completo</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#cdb1b8]" required>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 font-semibold mb-1">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#cdb1b8]" required>
+                </div>
+                <div class="mb-4">
+                    <label for="invitationType" class="block text-gray-700 font-semibold mb-1">Tipo de Invitación (ej. Boda, XV Años)</label>
+                    <input type="text" id="invitationType" name="invitationType" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#cdb1b8]" required>
+                </div>
+                <button type="submit" class="w-full bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
+                    Enviar por WhatsApp
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-[#876673] text-white p-6 text-center rounded-t-3xl shadow-lg">
+        <p class="text-sm">&copy; 2024 Momentos Encantados. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previene el envío del formulario por defecto
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const invitationType = document.getElementById('invitationType').value;
+
+            // Formato del mensaje para WhatsApp
+            const message = `Hola, mi nombre es ${name}. Estoy interesado(a) en una invitación de tipo "${invitationType}". Mi teléfono es ${phone}.`;
+
+            // Codificar el mensaje para la URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Número de teléfono de destino (con código de país)
+            const phoneNumber = '524426084804';
+
+            // Construir la URL de WhatsApp
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Abrir el chat de WhatsApp en una nueva pestaña
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
