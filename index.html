@@ -3,660 +3,828 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Momentos Encantados - Invitaciones Digitales</title>
-    <!-- Incluye Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fuentes para un diseño elegante -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Momentos Encantados - Catálogo Completo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --vibrant-pink: #f08cb2;
+            --deep-pink: #c2185b;
+            --light-pink: #fce4ec;
+            --text-color: #4a0e2a;
+            --web-blue: #5c6bc0;
+            --static-gold: #b8860b;
+            --package-purple: #9c27b0;
+            --bronze: #cd7f32;
+            --silver: #9e9e9e;
+            --gold: #d4af37;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal { opacity: 0; transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; animation: fadeInUp 0.8s ease-out forwards; }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--vibrant-pink);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
-        .hero-title {
-            font-family: 'Playfair Display', serif;
+
+        nav {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        /* Estilos personalizados para el contenedor de paquetes */
-        .packages-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        nav a {
+            color: var(--deep-pink);
+            text-decoration: none;
+            margin: 5px 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        header {
+            background-color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 5px solid var(--light-pink);
+        }
+
+        header h1 { margin: 0; font-size: 2.5em; color: var(--deep-pink); }
+
+        section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        h2 { color: var(--deep-pink); text-align: center; border-bottom: 2px solid var(--light-pink); padding-bottom: 10px; margin-bottom: 20px; }
+
+        .pricing-table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .pricing-table th {
+            background-color: var(--deep-pink);
+            color: white;
+            padding: 15px;
+            font-size: 1em;
+        }
+
+        .pricing-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-pink);
+            color: var(--text-color);
+        }
+
+        .pricing-table tr:hover {
+            background-color: var(--light-pink);
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: var(--deep-pink);
+            font-size: 1.1em;
+        }
+
+        .web-packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .web-package-card {
+            background: var(--light-pink);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--deep-pink);
+            transition: transform 0.3s;
+        }
+
+        .web-package-card:hover { transform: translateY(-5px); }
+        .card-basic { border-top-color: var(--web-blue); }
+        .card-bronze { border-top-color: var(--bronze); }
+        .card-silver { border-top-color: var(--silver); }
+        .card-gold { border-top-color: var(--gold); }
+        .card-plus { border-top-color: var(--package-purple); }
+
+        .web-package-card h3 { margin: 0; color: var(--deep-pink); font-size: 1.3em; }
+        .web-package-price { font-size: 1.8em; font-weight: bold; margin: 10px 0; color: var(--text-color); }
+        .web-package-features { list-style: none; padding: 0; margin: 10px 0; flex-grow: 1; font-size: 0.9em; text-align: left; }
+        .web-package-features li { margin-bottom: 5px; padding-left: 18px; position: relative; }
+        .web-package-features li::before { content: "•"; position: absolute; left: 0; color: var(--deep-pink); font-weight: bold; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .invitation-card {
+            background-color: var(--light-pink);
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .invitation-card:hover { transform: scale(1.03); }
+
+        .invitation-card video, .invitation-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .invitation-card h3 { 
+            margin: 10px 0 5px; 
+            font-size: 0.85em; 
+            color: var(--deep-pink);
+            height: 2.4em;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .category-tag {
+            font-size: 0.65em;
+            text-transform: uppercase;
+            background: var(--deep-pink);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .tag-web { background: var(--web-blue); }
+        .tag-static { background: var(--static-gold); }
+        .tag-package { background: var(--package-purple); }
+
+        .contact-form, .order-form {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--deep-pink);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--light-pink);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1em;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--vibrant-pink);
+        }
+
+        .dynamic-fields {
+            background: var(--light-pink);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+            display: none;
+            border: 1px dashed var(--deep-pink);
+        }
+
+        .btn-submit {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #128c7e;
+        }
+
+        #mediaModal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content { position: relative; width: 90%; max-width: 450px; text-align: center; }
+        .close-modal { position: absolute; top: -40px; right: 0; color: white; font-size: 40px; cursor: pointer; }
+
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px;
+            background-color: #25d366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 30px; z-index: 1000; text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        footer { text-align: center; padding: 40px; background: white; margin-top: 20px; }
+
+        @media (max-width: 600px) {
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .invitation-card video, .invitation-card img { height: 200px; }
+            header h1 { font-size: 1.8em; }
+            .pricing-table th, .pricing-table td { padding: 10px; font-size: 0.85em; }
         }
     </style>
 </head>
-<body class="bg-[#fcf7f9] flex flex-col min-h-screen text-[#4f464e]">
+<body>
 
-    <!-- Sección de Héroe -->
-    <header class="relative overflow-hidden bg-[#fcf7f9] py-24 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center text-center rounded-b-3xl shadow-lg">
-        <div class="relative z-10">
-            <h1 class="hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-4 text-[#bf8e97]">Momentos Encantados</h1>
-            <p class="text-lg md:text-xl max-w-2xl mb-8 font-medium text-gray-700">Crea recuerdos inolvidables con nuestras invitaciones digitales y de video personalizadas.</p>
-            <a href="#contacto" class="bg-[#bf8e97] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 transform hover:scale-105">
-                ¡Empieza tu proyecto!
-            </a>
-        </div>
+    <nav>
+        <a href="#tipos-invitacion">Tipos</a>
+        <a href="#video-invitaciones">Videos</a>
+        <a href="#invitaciones-web">Galería Web</a>
+        <a href="#paquetes-web">Paquetes Web</a>
+        <a href="#invitaciones-estaticas">Estáticas</a>
+        <a href="#contacto">Cotizar</a>
+        <a href="#pedido">Hacer Pedido</a>
+    </nav>
+
+    <header>
+        <h1>Momentos Encantados</h1>
+        <p>Catálogo Digital de Invitaciones</p>
     </header>
 
-    <!-- Contenido Principal -->
-    <main class="container mx-auto p-4 md:p-8 flex-grow">
+    <section id="tipos-invitacion" class="reveal">
+        <h2>Precios Base</h2>
+        <div class="pricing-table-container">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Estática</strong></td>
+                        <td>Imagen JPG de alta resolución ideal para redes</td>
+                        <td class="price-tag">$79</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Video Invitación</strong></td>
+                        <td>Video de 30s con música y efectos visuales</td>
+                        <td class="price-tag">$139</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interactiva / Web</strong></td>
+                        <td>Invitación digital con botones interactivos</td>
+                        <td class="price-tag">Desde $189</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-        <!-- Sección de Servicios -->
-        <section id="servicios" class="my-12 p-6 bg-white rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#bf8e97]">Nuestros Servicios</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Tarjeta de Servicio 1 -->
-                <div class="bg-[#fcf7f9] p-6 rounded-xl shadow-md border-t-4 border-[#cdb1b8] text-center">
-                    <div class="text-4xl mb-3 text-[#bf8e97]">💌</div>
-                    <h3 class="text-xl font-semibold hero-title text-[#a37a85] mb-2">Invitaciones Digitales</h3>
-                    <p class="text-sm text-gray-700">Diseños elegantes y 100% personalizados para cualquier ocasión: bodas, quince años, cumpleaños y más.</p>
-                </div>
-                <!-- Tarjeta de Servicio 2 -->
-                <div class="bg-[#fcf7f9] p-6 rounded-xl shadow-md border-t-4 border-[#cdb1b8] text-center">
-                    <div class="text-4xl mb-3 text-[#bf8e97]">🎬</div>
-                    <h3 class="text-xl font-semibold hero-title text-[#a37a85] mb-2">Video Invitaciones</h3>
-                    <p class="text-sm text-gray-700">Invitaciones animadas con música y efectos, perfectas para redes sociales y WhatsApp.</p>
-                </div>
-                <!-- Tarjeta de Servicio 3 -->
-                <div class="bg-[#fcf7f9] p-6 rounded-xl shadow-md border-t-4 border-[#cdb1b8] text-center">
-                    <div class="text-4xl mb-3 text-[#bf8e97]">🎨</div>
-                    <h3 class="text-xl font-semibold hero-title text-[#a37a85] mb-2">Paquetes Completos</h3>
-                    <p class="text-sm text-gray-700">Video + invitación digital + tarjeta de agradecimiento. Todo a juego para tu evento especial.</p>
-                </div>
+    <section id="video-invitaciones" class="reveal">
+        <h2>Video Invitaciones</h2>
+        <div class="gallery">
+            <script>
+                const videoData = [
+                    { c: "Religioso", t: "Natalia Mi Primera Comunión", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/Wedding.mp4" },
+                    { c: "Infantil", t: "Dinosaurio", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/W%20(1).mp4" },
+                    { c: "Infantil", t: "Belly y Beto", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/Samantha.mp4" },
+                    { c: "Infantil", t: "La Granja", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/Vamos%20a%20Festejar%20(1).mp4" },
+                    { c: "Infantil", t: "Mis 5 Años Galilea", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/GALY%20(1).mp4" },
+                    { c: "Infantil", t: "Chip y Dale", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/CHIP%20AND%20DALE%20muestra.mp4" },
+                    { c: "Infantil", t: "Sirenita Purple", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Blue%20and%20Purple%20Mermaid%20Birthday%20Party%20Invitation%20Mobile%20Video%20(1).mp4" },
+                    { c: "Infantil", t: "Frozen", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/frozen.mp4" },
+                    { c: "Infantil", t: "Plim Plim 23", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/plim%20plim%2023.mp4" },
+                    { c: "Infantil", t: "Camila", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Camila%20(1).mp4" },
+                    { c: "Infantil", t: "Amelia", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/AMELIA.mp4" },
+                    { c: "Infantil", t: "Mia Roberta", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Mia%20Roberta.mp4" },
+                    { c: "Infantil", t: "Ivanna (8)", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Ivanna%20(8).mp4" },
+                    { c: "Infantil", t: "Lia y Evan", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Lia%20y%20Evan%20(1).mp4" },
+                    { c: "Infantil", t: "Keyla", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Keyla.mp4" },
+                    { c: "Infantil", t: "Matias", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Copia%20de%20Matias%20(1).mp4" },
+                    { c: "Infantil", t: "Mis 2 Años", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Mis%202%20a%C3%B1os%20(2).mp4" },
+                    { c: "Infantil", t: "Mis 3 Años (V1)", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Mis%203%20a%C3%B1os%20(5).mp4" },
+                    { c: "Infantil", t: "Mis 3 Años Joss", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/mis%203%20a%C3%B1os%20joss.mp4" },
+                    { c: "Infantil", t: "José Mateo (Chavo)", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Jos%C3%A9%20Mateo.mp4" },
+                    { c: "Infantil", t: "Minnie Mouse", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/minie%20mouse.mp4" },
+                    { c: "Infantil", t: "Moises", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Moises.mp4" },
+                    { c: "Infantil", t: "Princesa Peach", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/princesa%20.mp4" },
+                    { c: "Infantil", t: "Blancanieves", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Mis%20xv%20a%C3%B1os%20(5).mp4" },
+                    { c: "Religioso", t: "Confirmación Matías", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/mathias%20confirmacion.mp4" },
+                    { c: "Religioso", t: "Bautizo Bella", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/MI%20BAUTIZO%20Y%20PRIMER%20A%C3%91O%20BELLA%20(1).mp4" },
+                    { c: "Religioso", t: "Ubicación Ceremonia", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Confirmaci%C3%B3n%20y%20ubicaci%C3%B3n%F0%9F%AA%82.mp4" },
+                    { c: "Especial", t: "Revelación Sexo", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/%C2%BFNi%C3%B1o%20o%20ni%C3%B1a%20(3).mp4" },
+                    { c: "Graduación", t: "Graduación Íker", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Te%20invito%20a%20festejar%20mi%20graduaci%C3%B3n%20%C3%8Dker%20Gael%20(3).mp4" }
+                ];
+
+                videoData.forEach(v => {
+                    document.write(`
+                        <div class="invitation-card" onclick="openMedia('${v.s}', 'video')">
+                            <span class="category-tag">${v.c}</span>
+                            <video src="${v.s}" muted loop playsinline></video>
+                            <h3>${v.t}</h3>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
+    <section id="invitaciones-web" class="reveal">
+        <h2>Galería de Diseños Web</h2>
+        <div class="gallery">
+            <script>
+                function getRaw(url) {
+                    if (url.includes("github.com") && url.includes("/blob/")) {
+                        return url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/");
+                    }
+                    return url;
+                }
+
+                const webData = [
+                    { c: "Web", t: "Cumpleaños 50", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/CUMPLEA%C3%91OS%2050.mp4") },
+                    { c: "Graduación", t: "Graduación Regina", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/GRADUACION%20REGINA.mp4") },
+                    { c: "Web", t: "Primer Año Mickey", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/PRIEMR%20A%C3%91O%20MICKEY.mp4") },
+                    { c: "XV Años", t: "XV Azul Hombre", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/XV%20AZUL%20HOMBRE.mp4") },
+                    { c: "XV Años", t: "XV Azul Rey", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/XV%20AZUL%20REY.mp4") },
+                    { c: "XV Años", t: "XV Cruella", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/XV%20CRUELLA.mp4") },
+                    { c: "XV Años", t: "XV Estrellas", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/XV%20ESTRELLAS.mp4") },
+                    { c: "XV Años", t: "XV Mar", s: getRaw("https://github.com/regina1503/INVIME-2/blob/main/XV%20MAR.mp4") },
+                    { c: "XV Años", t: "CENICIENTA", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/CENICIENTA%203.mp4" },
+                    { c: "Web", t: "Boda Elegante", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20.mp4" },
+                    { c: "Web", t: "Boda Tonos Pastel", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20TONOS%20PASTEL.mp4" },
+                    { c: "Web", t: "Boda Vaquera 2", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20VAQUERA%202.mp4" },
+                    { c: "Web", t: "Boda Viaje", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/boda%20viaje.mp4" },
+                    { c: "Web", t: "Boda Blanco", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/boda%20blanco.mp4" },
+                    { c: "Web", t: "Boda Clásica", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20CLASICA.mp4" },
+                    { c: "Web", t: "Boda Dorado", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20DORADO.mp4" },
+                    { c: "Web", t: "Boda Valeria y Eddy", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/20250928_163342.mp4" },
+                    { c: "Web", t: "Boda Rosa", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-09%20a%20las%2020.46.18_064bdf27.mp4" },
+                    { c: "Web", t: "Boda Azul V1", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20AZUL.mp4" },
+                    { c: "Web", t: "Boda Azul V2", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/BODA%20AZUL.mp4" },
+                    { c: "Web", t: "Boda Verde V1", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/b1%20verde.mp4" },
+                    { c: "Web", t: "Boda Verde V2", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20VERDE%202.mp4" },
+                    { c: "Web", t: "Boda Mexicana 1", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20MEX%201.mp4" },
+                    { c: "Web", t: "Boda Mexicana 2", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20MEXICANA%202.mp4" },
+                    { c: "Web", t: "Boda Vaquera", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20VAQUERA.mp4" },
+                    { c: "Web", t: "Bodas de Plata", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODAS%20DE%20PLATA.mp4" },
+                    { c: "Web", t: "Mis XV Dulce", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/20250928_163624.mp4" },
+                    { c: "Web", t: "XV Sara", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/WhatsApp%20Video%202024-06-30%20at%209.11.54%20PM.mp4" },
+                    { c: "Web", t: "XV Verde", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20VERDE.mp4" },
+                    { c: "Web", t: "XV Verde Esmeralda", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20VERDE%20ESMERALDA.mp4" },
+                    { c: "Web", t: "XV Clásico", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20CLASICO.mp4" },
+                    { c: "Web", t: "XV Clásico Rosa", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20CLASICO%20ROSA%20.mp4" },
+                    { c: "Web", t: "XV Rosa QR", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20ROSA%20QR.mp4" },
+                    { c: "Web", t: "XV Girasoles", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/WhatsApp%20Video%202024-06-30%20at%209.11.57%20PM.mp4" },
+                    { c: "Web", t: "XV LILA", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-10%20a%20las%2011.48.54_f800d301.mp4" },
+                    { c: "Web", t: "XV AZUL", s: "https://raw.githubusercontent.com/regina1503/paquetes-invi/main/AZUL%20XV.mp4" },
+                    { c: "Web", t: "XV Charra", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20CHARRA.mp4" },
+                    { c: "Web", t: "XV Rapunzel", s: "https://raw.githubusercontent.com/regina1503/invitaciones/main/RAPUNZEL.mp4" },
+                    { c: "Web", t: "XV Hombre", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/XV%20HOMBRE.mp4" },
+                    { c: "Web", t: "Alicia País Maravillas", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/ALICIA.mp4" },
+                    { c: "Web", t: "Bautizo Julian", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BAUTIZO%20JULIAN.mp4" },
+                    { c: "Web", t: "Bautizo Interactiva", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BAUTIZO%20INTERACTIVA.mp4" },
+                    { c: "Web", t: "Cenicienta V1", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/20260106_000925.mp4" },
+                    { c: "Web", t: "Cenicienta V2", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/CENICIENTA%202.mp4" },
+                    { c: "Web", t: "Cumpleaños", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/CUMPLEA%C3%91OS.mp4" }
+                ];
+
+                webData.forEach(v => {
+                    document.write(`
+                        <div class="invitation-card" onclick="openMedia('${v.s}', 'video')">
+                            <span class="category-tag tag-web">${v.c}</span>
+                            <video src="${v.s}" muted loop playsinline></video>
+                            <h3>${v.t}</h3>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
+    <section id="paquetes-web" class="reveal">
+        <h2>Paquetes Web</h2>
+        <div class="web-packages-grid">
+            <div class="web-package-card card-basic">
+                <h3>WEB BÁSICA</h3>
+                <div class="web-package-price">$189</div>
+                <ul class="web-package-features">
+                    <li>Datos básicos del evento</li>
+                    <li>Música</li>
+                    <li>1 Botón de ubicación</li>
+                    <li>1 Botón de confirmación</li>
+                    <li>Cuenta Regresiva</li>
+                </ul>
+                <button class="btn-submit" onclick="requestPkg('Web Básica', 189)" style="padding: 10px; font-size: 0.9em;">Lo quiero</button>
             </div>
-        </section>
-
-        <!-- Sección de Paquetes -->
-        <section id="paquetes" class="my-12 p-6 bg-[#f5f0f3] rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#a37a85]">Nuestros Paquetes</h2>
-            <div class="flex flex-wrap justify-center gap-6 text-center packages-grid">
-                <!-- Paquete Invitación Estática -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Invitación Estática (Imagen)</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$69 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Diseño único de imagen para tu evento.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Diseño de imagen personalizado</li>
-                        <li class="mb-1">Perfecto para compartir por redes sociales</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Invitaci%C3%B3n%20Est%C3%A1tica"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Invitación Interactiva (PDF) -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Invitación Interactiva (PDF)</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$119 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Invitación en formato PDF con 1 botón de ubicación y 1 de confirmación de asistencia.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Invitación en formato PDF</li>
-                        <li class="mb-1">Botón de ubicación</li>
-                        <li class="mb-1">Botón de confirmación de asistencia</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Invitaci%C3%B3n%20Interactiva%20(PDF)"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Video Invitación -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm scale-105 transform">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Video Invitación</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$139 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Video dinámico (aprox. 30 seg. a 1 min.) con diseño personalizado.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Diseño personalizado</li>
-                        <li class="mb-1">Duración de 30 segundos a 1 minuto</li>
-                        <li class="mb-1">Ideal para redes sociales y WhatsApp</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Video%20Invitaci%C3%B3n"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Video Invitación Interactiva -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Video Invitación Interactiva</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$159 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Video invitación con 1 botón de ubicación y 1 de confirmación de asistencia.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Video con diseño personalizado</li>
-                        <li class="mb-1">Botón de ubicación</li>
-                        <li class="mb-1">Botón de confirmación de asistencia</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Video%20Invitaci%C3%B3n%20Interactiva"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Web Básica -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Básica</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$179 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Página web del evento con funciones esenciales.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Música</li>
-                        <li class="mb-1">1 Botón de ubicación</li>
-                        <li class="mb-1">1 Botón de confirmación</li>
-                        <li class="mb-1">Cuenta Regresiva</li>
-                        <li class="mb-1">Datos básicos del evento</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20B%C3%A1sica"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Web Bronce -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Bronce</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$329 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Página web completa para tu evento con funciones interactivas.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Frase de su elección</li>
-                        <li class="mb-1">Música</li>
-                        <li class="mb-1">2 Botones de ubicación</li>
-                        <li class="mb-1">1 Botón de confirmación</li>
-                        <li class="mb-1">Cuenta Regresiva</li>
-                        <li class="mb-1">Nombre de papás</li>
-                        <li class="mb-1">Lluvia de sobres</li>
-                        <li class="mb-1">Galería de fotos</li>
-                        <li class="mb-1">Código de vestimenta</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Bronce"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Web Plata -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Plata</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$499 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Página web avanzada para tu evento con pases digitales y más.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Frase de su elección</li>
-                        <li class="mb-1">Música</li>
-                        <li class="mb-1">2 Botones de ubicación</li>
-                        <li class="mb-1">1 Botón de confirmación</li>
-                        <li class="mb-1">Cuenta Regresiva</li>
-                        <li class="mb-1">Pases digitales para 150 personas</li>
-                        <li class="mb-1">Lluvia de sobres</li>
-                        <li class="mb-1">Galería de fotos</li>
-                        <li class="mb-1">Código de vestimenta</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Plata"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Web Oro -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Oro</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$659 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">Página web premium con galería de fotos dinámica y opciones de hospedaje.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Frase de su elección</li>
-                        <li class="mb-1">Música</li>
-                        <li class="mb-1">2 Botones de ubicación</li>
-                        <li class="mb-1">1 Botón de confirmación</li>
-                        <li class="mb-1">Pases digitales ilimitados</li>
-                        <li class="mb-1">Cuenta regresiva</li>
-                        <li class="mb-1">Lluvia de sobres/mesa de regalos</li>
-                        <li class="mb-1">Galería de fotos dinámica</li>
-                        <li class="mb-1">Opciones de hospedaje</li>
-                        <li class="mb-1">Código de vestimenta</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Oro"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
-                <!-- Paquete Web Oro Plus -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#cdb1b8] flex flex-col w-full md:w-auto flex-1 max-w-sm">
-                    <h3 class="text-xl font-bold hero-title text-[#bf8e97] mb-2">Web Oro Plus</h3>
-                    <p class="text-3xl font-extrabold text-[#4f464e] mb-3">$799 pesos</p>
-                    <p class="text-sm text-gray-700 italic mb-3">El paquete más completo con QR de acceso y para subir fotos el día del evento.</p>
-                    <ul class="text-sm text-gray-700 text-left mb-4 flex-grow list-inside list-disc">
-                        <li class="mb-1">Frase de su elección</li>
-                        <li class="mb-1">Música</li>
-                        <li class="mb-1">2 Botones de ubicación</li>
-                        <li class="mb-1">1 Botón de confirmación</li>
-                        <li class="mb-1">Pases digitales ilimitados</li>
-                        <li class="mb-1">Cuenta regresiva</li>
-                        <li class="mb-1">Lluvia de sobres/mesa de regalos</li>
-                        <li class="mb-1">Galería de fotos dinámica</li>
-                        <li class="mb-1">Opciones de hospedaje</li>
-                        <li class="mb-1">Código de vestimenta</li>
-                        <li class="mb-1">QR de acceso al evento</li>
-                        <li class="mb-1">QR de fotos para subir fotos el día del evento</li>
-                    </ul>
-                    <a href="https://wa.me/521234567890?text=Hola,%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20paquete%20Web%20Oro%20Plus"
-                       target="_blank" class="bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                        Más Información
-                    </a>
-                </div>
+            <div class="web-package-card card-bronze">
+                <h3>WEB BRONCE</h3>
+                <div class="web-package-price">$349</div>
+                <ul class="web-package-features">
+                    <li>Frase de su elección</li>
+                    <li>Música</li>
+                    <li>2 Botones de ubicación</li>
+                    <li>1 Botón de confirmación</li>
+                    <li>Cuenta Regresiva</li>
+                    <li>Nombre de papás</li>
+                    <li>Lluvia de sobres</li>
+                    <li>Galería de fotos</li>
+                    <li>Código de vestimenta</li>
+                </ul>
+                <button class="btn-submit" onclick="requestPkg('Web Bronce', 349)" style="padding: 10px; font-size: 0.9em;">Lo quiero</button>
             </div>
-        </section>
-
-        <!-- Sección de Portafolio -->
-        <section id="portafolio" class="my-12 p-6 bg-[#f5f0f3] rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#a37a85]">Nuestro Portafolio</h2>
-
-            <!-- Videos de Bodas -->
-            <h3 class="text-2xl font-bold hero-title text-[#bf8e97] mb-6">Bodas</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Boda">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/BODA%20AZUL.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Boda+2">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/boda%202.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Boda+Blanco">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/boda%20blanco.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Boda+Mex">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/boda%20mex.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Boda+y+3+Años">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/boda%20y%203%20a%C3%B1os.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
+            <div class="web-package-card card-silver">
+                <h3>WEB PLATA</h3>
+                <div class="web-package-price">$499</div>
+                <ul class="web-package-features">
+                    <li>Frases de su elección</li>
+                    <li>Música</li>
+                    <li>2 Botones de ubicación</li>
+                    <li>1 Botón de confirmación</li>
+                    <li>Cuenta Regresiva</li>
+                    <li>Pases digitales para 150 personas</li>
+                    <li>Lluvia de sobres</li>
+                    <li>Galería de fotos</li>
+                    <li>Código de vestimenta</li>
+                </ul>
+                <button class="btn-submit" onclick="requestPkg('Web Plata', 499)" style="padding: 10px; font-size: 0.9em;">Lo quiero</button>
             </div>
-
-            <!-- Videos de XV Años -->
-            <!-- VIDEOS AGREGADOS PARA XV AÑOS -->
-            <h3 class="text-2xl font-bold hero-title text-[#bf8e97] mb-6">XV Años y Más Celebraciones</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=XV+Luna">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/xv%20luna.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <!-- Videos movidos del área de Cumpleaños -->
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Cumpleaños+1">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/10000000_7140466309404764_5652029856896274267_n.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Diseño+sin+título+2">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Rapunzel">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/RAPUNZEL.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+WhatsApp+5">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-10%20a%20las%2011.48.54_f800d301.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+WhatsApp+6">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-10%20a%20las%2011.49.02_c4e56893.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+WhatsApp+7">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-10%20a%20las%2011.49.20_6dce3976.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Cenicienta">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/cenicienta%20(4).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <!-- Videos movidos del área de Funcionalidad -->
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Funcionalidad+1">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/20250713_223411.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Funcionalidad+2">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/426198013_7605644982788436_5733299954171461144_n.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
+            <div class="web-package-card card-gold">
+                <h3>WEB ORO</h3>
+                <div class="web-package-price">$659</div>
+                <ul class="web-package-features">
+                    <li>Frases de su elección</li>
+                    <li>Música</li>
+                    <li>2 Botones de ubicación</li>
+                    <li>1 Botón de confirmación</li>
+                    <li>Pases digitales ilimitados</li>
+                    <li>Cuenta regresiva</li>
+                    <li>Lluvia de sobres/mesa de regalos</li>
+                    <li>Galería de fotos dinámica</li>
+                    <li>Opciones de hospedaje</li>
+                    <li>Código de vestimenta</li>
+                </ul>
+                <button class="btn-submit" onclick="requestPkg('Web Oro', 659)" style="padding: 10px; font-size: 0.9em;">Lo quiero</button>
             </div>
-
-            <!-- Videos de Cumpleaños -->
-            <h3 class="text-2xl font-bold hero-title text-[#bf8e97] mb-6">Cumpleaños</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <!-- Se han eliminado los videos que movimos a XV años -->
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Cumpleaños+2">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/AMELIA.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Cumpleaños+3">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Blue%20and%20Purple%20Mermaid%20Birthday%20Party%20Invitation%20Mobile%20Video%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Cumpleaños+4">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/CHIP%20AND%20DALE%20muestra.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Camila">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Camila%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Cumpleaños+6">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/CUMPLE%20(3).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+Cumpleaños+7">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Copia%20de%20Matias%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mis+tres+años">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Copia%20de%20Mis%20tres%20a%C3%B1os%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Nuestro+cumpleaños">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Copia%20de%20Nuestro%20cumplea%C3%B1os%20Lolys%F0%9F%92%96.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Diseño+sin+título+1">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Galy">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/GALY%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=José+Mateo">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Jos%C3%A9%20Mateo.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=León">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Le%C3%B3n%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mateo">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/MATEO%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <!-- Videos agregados en la última actualización -->
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mi+Bautizo+y+1er+Año">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/MI%20BAUTIZO%20Y%20PRIMER%20A%C3%91O%20BELLA%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mi+Primer+Año">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/MI%20PRIMER%20A%C3%91O%20(2).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mis+2+Años">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Mis%202%20a%C3%B1os%20(2).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mis+3+Años">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Mis%203%20a%C3%B1os%20(2).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mis+9+Años">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Mis%209%20a%C3%B1os%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Moises">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Moises.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=The+King">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/The%20king%20(4).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Ven+a+celebrar">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Ven%20a%20celebrar%20mi.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Minnie+Mouse">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/minie%20mouse.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mis+3+años+Joss">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/mis%203%20a%C3%B1os%20joss.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Princesa">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/princesa%20.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Spider+Man">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/spider%20man.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+WhatsApp+3">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-09%20a%20las%2020.45.25_41ac51e4.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Video+de+WhatsApp+4">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-09%20a%20las%2020.46.18_064bdf27.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
+            <div class="web-package-card card-plus">
+                <h3>WEB ORO PLUS</h3>
+                <div class="web-package-price">$799</div>
+                <ul class="web-package-features">
+                    <li>Frases de su elección</li>
+                    <li>Música</li>
+                    <li>2 Botones de ubicación</li>
+                    <li>1 Botón de confirmación</li>
+                    <li>Pases digitales ilimitados</li>
+                    <li>Cuenta regresiva</li>
+                    <li>Lluvia de sobres/mesa de regalos</li>
+                    <li>Galería de fotos dinámica</li>
+                    <li>Opciones de hospedaje</li>
+                    <li>Código de vestimenta</li>
+                    <li>QR de acceso al evento</li>
+                    <li>QR para subir fotos el día del evento</li>
+                </ul>
+                <button class="btn-submit" onclick="requestPkg('Web Oro Plus', 799)" style="padding: 10px; font-size: 0.9em;">Lo quiero</button>
             </div>
+        </div>
+    </section>
 
-            <!-- Videos de Bautizos y Confirmaciones -->
-            <h3 class="text-2xl font-bold hero-title text-[#bf8e97] mt-12 mb-6">Bautizos y Confirmaciones</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Mathias+Confirmación">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/mathias%20confirmacion.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
+    <section id="invitaciones-estaticas" class="reveal">
+        <h2>Invitaciones Estáticas</h2>
+        <div class="gallery">
+            <script>
+                // Función helper para transformar links de GitHub a RAW
+                function getRawImg(url) {
+                    if (url.includes("github.com") && url.includes("/blob/")) {
+                        return url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/");
+                    }
+                    return url;
+                }
+
+                const staticData = [
+                    // NUEVOS AGREGADOS (Estáticas)
+                    { t: "Eliab 💙", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Eliab%20%F0%9F%92%99.jpg") },
+                    { t: "Emily Mis XV 🧡", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Emily%20mis%20xv%20a%C3%B1os%F0%9F%A7%A1%20(1).jpg") },
+                    { t: "Cumpleaños Green (13)", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Green%20and%20Brown%20Birthday%20Invitation%20(13).jpg") },
+                    { t: "Cumpleaños Green (3)", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Green%20and%20Brown%20Birthday%20Invitation%20(3).jpg") },
+                    { t: "Bautizo Floral Rosa", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Invitaci%C3%B3n%20Vertical%20Bautizo%20Floral%20Rosa%20y%20Marr%C3%B3n.jpg") },
+                    { t: "Niño Vaquero Beige", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Invitaci%C3%B3n%20de%20cumplea%C3%B1os%20ni%C3%B1o%20vaquero%20beige%20.jpg") },
+                    { t: "Matheo Emiliano (8)", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Matheo%20Emiliano%20mis%208%20a%C3%B1os%20(8).jpg") },
+                    { t: "Mi Primer Añito", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Mi%20primer%20a%C3%B1ito.jpg") },
+                    { t: "Nuestra Boda (2)", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Nuestra%20Boda%20(2).jpg") },
+                    { t: "Ven a Celebrar (1)", s: getRawImg("https://github.com/regina1503/INVIME-2/blob/main/Ven%20a%20celebrar%20con%20nosostros%20el%20(1).jpg") },
+                    
+                    // ORIGINALES
+                    { t: "Invitación Clásica 1", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/IN1.jpeg" },
+                    { t: "Invitación Elegante 2", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/IN2.jpeg" },
+                    { t: "Invitación Moderna 3", s: "https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/IN%203.jpeg" }
+                ];
+
+                staticData.forEach(img => {
+                    document.write(`
+                        <div class="invitation-card" onclick="openMedia('${img.s}', 'image')">
+                            <span class="category-tag tag-static">Estática</span>
+                            <img src="${img.s}" alt="${img.t}">
+                            <h3>${img.t}</h3>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
+    <section id="contacto" class="reveal">
+        <h2>Solicitar Cotización</h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="userName">Nombre Completo</label>
+                <input type="text" id="userName" placeholder="Escribe tu nombre aquí...">
             </div>
-
-             <!-- Videos de Baby Showers y Revelación de Género -->
-            <h3 class="text-2xl font-bold hero-title text-[#bf8e97] mt-12 mb-6">Baby Showers y Revelación de Género</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Niño+o+Niña">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/%C2%BFNi%C3%B1o%20o%20ni%C3%B1a%20(3).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
+            <div class="form-group">
+                <label for="invType">Tipo de Invitación o Paquete</label>
+                <select id="invType">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="Estática">Estática ($79)</option>
+                    <option value="Video">Video ($139)</option>
+                    <option value="Web Básica">Web Básica ($189)</option>
+                    <option value="Web Bronce">Web Bronce ($349)</option>
+                    <option value="Web Plata">Web Plata ($499)</option>
+                    <option value="Web Oro">Web Oro ($659)</option>
+                    <option value="Web Oro Plus">Web Oro Plus ($799)</option>
+                </select>
             </div>
-
-            <!-- Ejemplos de Funcionalidad -->
-            <h3 class="text-2xl font-bold hero-title text-[#bf8e97] mt-12 mb-6">Ejemplos de Funcionalidad</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Se han eliminado los videos que movimos a XV años -->
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Funcionalidad+3">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/A%C3%B1adir%20un%20subt%C3%ADtulo.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Funcionalidad+4">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Confirmaci%C3%B3n%20y%20ubicaci%C3%B3n%F0%9F%AA%82.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Funcionalidad+5">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Copia%20de%20El%20texto%20del%20p%C3%A1rrafo.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <!-- Más videos de funcionalidad -->
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Texto+del+párrafo+1">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/El%20texto%20del%20p%C3%A1rrafo%20(1).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                 <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Texto+del+párrafo+3">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/El%20texto%20del%20p%C3%A1rrafo%20(3).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=Graduación+Iker+Gael">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/Te%20invito%20a%20festejar%20mi%20graduaci%C3%B3n%20%C3%8Dker%20Gael%20(3).mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
-                <div class="relative group rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <video controls muted loading="lazy" class="w-full h-full object-cover" poster="https://placehold.co/400x600/fcf7f9/876673?text=B1+Verde">
-                        <source src="https://raw.githubusercontent.com/regina1503/invitaciones/main/b1%20verde.mp4" type="video/mp4">
-                        Tu navegador no soporta el tag de video.
-                    </video>
-                </div>
+            <div class="form-group">
+                <label for="userMessage">Mensaje o Detalles Adicionales</label>
+                <textarea id="userMessage" rows="4" placeholder="Cuéntanos más sobre tu evento (fecha, temática, etc.)"></textarea>
             </div>
-        </section>
+            <button class="btn-submit" onclick="sendWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Enviar a WhatsApp
+            </button>
+        </div>
+    </section>
 
-        <!-- Sección "Cómo Funciona" -->
-        <section id="como-funciona" class="my-12 p-6 bg-white rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#bf8e97]">¿Cómo Funciona?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div class="flex flex-col items-center">
-                    <div class="w-10 h-10 bg-[#fcf7f9] text-[#bf8e97] rounded-full flex items-center justify-center text-xl font-bold mb-2 border-2 border-[#cdb1b8]">1</div>
-                    <h3 class="text-base font-semibold mb-1">Elige tu diseño</h3>
-                    <p class="text-xs text-gray-700">Explora nuestro portafolio y elige el estilo que más te guste o cuéntanos tu idea.</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-10 h-10 bg-[#fcf7f9] text-[#bf8e97] rounded-full flex items-center justify-center text-xl font-bold mb-2 border-2 border-[#cdb1b8]">2</div>
-                    <h3 class="text-base font-semibold mb-1">Personalizamos</h3>
-                    <p class="text-xs text-gray-700">Te pediremos los datos del evento, fotos y la música para crear un diseño único para ti, y una vez listo se te compartirá evidencia.</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-10 h-10 bg-[#fcf7f9] text-[#bf8e97] rounded-full flex items-center justify-center text-xl font-bold mb-2 border-2 border-[#cdb1b8]">3</div>
-                    <h3 class="text-base font-semibold mb-1">Realiza tu pago y recibe</h3>
-                    <p class="text-xs text-gray-700">Una vez aprobado el diseño, realiza tu pago para recibir tu invitación en formato digital o video, lista para ser compartida.</p>
-                </div>
+    <section id="pedido" class="reveal">
+        <h2>Formulario de Pedido</h2>
+        <div class="order-form">
+            <div class="form-group">
+                <label for="orderName">Nombre del Cliente</label>
+                <input type="text" id="orderName" placeholder="Tu nombre completo...">
             </div>
-        </section>
-
-        <!-- Sección de Contacto -->
-        <section id="contacto" class="my-12 p-6 bg-[#f5f0f3] rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-bold text-center mb-10 hero-title text-[#a37a85]">Contáctanos</h2>
-            <form id="contactForm" class="max-w-lg mx-auto bg-white p-6 rounded-xl shadow-md">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-semibold mb-1">Nombre Completo</label>
-                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#cdb1b8]" required>
+            <div class="form-group">
+                <label for="orderPackage">Paquete o Tipo Seleccionado</label>
+                <select id="orderPackage" onchange="updateOrderFields()">
+                    <option value="" disabled selected>Selecciona para llenar datos...</option>
+                    <option value="Estática">Estática</option>
+                    <option value="Video">Video Invitación</option>
+                    <option value="Web Básica">Web Básica</option>
+                    <option value="Web Bronce">Web Bronce</option>
+                    <option value="Web Plata">Web Plata</option>
+                    <option value="Web Oro">Web Oro</option>
+                    <option value="Web Oro Plus">Web Oro Plus</option>
+                </select>
+            </div>
+            <div id="dynamicFieldsContainer" class="dynamic-fields"></div>
+            <div id="commonFields" style="display:none;">
+                <div class="form-group">
+                    <label>Dato Extra / Campo Adicional</label>
+                    <textarea id="extraField" placeholder="Cualquier información adicional que desees incluir..."></textarea>
                 </div>
-                <div class="mb-4">
-                    <label for="phone" class="block text-gray-700 font-semibold mb-1">Teléfono</label>
-                    <input type="tel" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#cdb1b8]" required>
-                </div>
-                <div class="mb-4">
-                    <label for="invitationType" class="block text-gray-700 font-semibold mb-1">Tipo de Invitación (ej. Boda, XV Años)</label>
-                    <input type="text" id="invitationType" name="invitationType" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#cdb1b8]" required>
-                </div>
-                <button type="submit" class="w-full bg-[#bf8e97] text-white font-bold py-2 px-5 rounded-full shadow-lg hover:bg-[#a37a85] transition duration-300 text-sm">
-                    Enviar por WhatsApp
+                <button class="btn-submit" onclick="sendOrderWhatsApp()">
+                    <i class="fas fa-paper-plane"></i> Enviar Datos de Pedido
                 </button>
-            </form>
-        </section>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <div id="mediaModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeMediaModal()">&times;</span>
+            <div id="modalContainer"></div>
+        </div>
+    </div>
 
-    <!-- Pie de página -->
-    <footer class="bg-[#876673] text-white p-6 text-center rounded-t-3xl shadow-lg">
-        <p class="text-sm">&copy; 2024 Momentos Encantados. Todos los derechos reservados.</p>
+    <a href="https://wa.me/4426084804" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>Momentos Encantados &copy; 2026 - Invitaciones Digitales</p>
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Previene el envío del formulario por defecto
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
 
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const invitationType = document.getElementById('invitationType').value;
+        const modal = document.getElementById('mediaModal');
+        const container = document.getElementById('modalContainer');
 
-            // Formato del mensaje para WhatsApp
-            const message = `Hola, mi nombre es ${name}. Estoy interesado(a) en una invitación de tipo "${invitationType}". Mi teléfono es ${phone}.`;
+        function openMedia(src, type) {
+            modal.style.display = 'flex';
+            container.innerHTML = "";
+            if (type === 'video') {
+                const video = document.createElement('video');
+                video.src = src;
+                video.controls = true;
+                video.autoplay = true;
+                video.style.width = "100%";
+                video.style.maxHeight = "80vh";
+                video.style.borderRadius = "10px";
+                container.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = src;
+                img.style.width = "100%";
+                img.style.maxHeight = "80vh";
+                img.style.objectFit = "contain";
+                img.style.borderRadius = "10px";
+                container.appendChild(img);
+            }
+        }
 
-            // Codificar el mensaje para la URL
-            const encodedMessage = encodeURIComponent(message);
+        function closeMediaModal() {
+            modal.style.display = 'none';
+            container.innerHTML = "";
+        }
 
-            // Número de teléfono de destino (con código de país)
-            const phoneNumber = '524426084804';
+        window.onclick = function(event) {
+            if (event.target == modal) closeMediaModal();
+        }
 
-            // Construir la URL de WhatsApp
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        function requestPkg(name, price) {
+            document.getElementById('orderPackage').value = name;
+            updateOrderFields();
+            document.getElementById('pedido').scrollIntoView();
+        }
 
-            // Abrir el chat de WhatsApp en una nueva pestaña
-            window.open(whatsappUrl, '_blank');
-        });
+        function updateOrderFields() {
+            const pkg = document.getElementById('orderPackage').value;
+            const container = document.getElementById('dynamicFieldsContainer');
+            const common = document.getElementById('commonFields');
+            
+            container.style.display = 'block';
+            common.style.display = 'block';
+            container.innerHTML = "";
+
+            let fields = [];
+            const basicInfo = [
+                { id: 'f_name', label: 'Nombre del Festejad@', placeholder: 'Ej: Maria Hernandez' },
+                { id: 'f_date', label: 'Día y Hora', placeholder: 'Ej: Sábado 15 de Mayo, 4:00 PM' }
+            ];
+
+            if (pkg === "Estática" || pkg === "Video") {
+                fields = [
+                    { id: 'f_theme', label: 'Temática', placeholder: 'Ej: Sirenita, Boda Vintage...' },
+                    ...basicInfo,
+                    { id: 'f_location_name', label: 'Nombre del Lugar', placeholder: 'Ej: Salón Gardenias' },
+                    { id: 'f_location_address', label: 'Ubicación (Texto)', placeholder: 'Ej: Av. Central #123, Col. Centro' }
+                ];
+                if (pkg === "Video") {
+                    fields.push({ id: 'f_song', label: 'Canción de su elección', placeholder: 'Nombre del artista y canción' });
+                }
+            } else if (pkg.includes("Web")) {
+                fields = [
+                    { id: 'f_song', label: 'Canción de su elección', placeholder: 'Nombre del artista y canción' },
+                    { id: 'f_location_name', label: 'Nombre del Lugar / Ubicación del Evento', placeholder: 'Donde será el evento' },
+                    { id: 'f_location_link', label: 'Link de la Ubicación (Google Maps)', placeholder: 'Pega el enlace de Maps aquí' },
+                    { id: 'f_confirm_phone', label: 'Número para confirmar asistencia', placeholder: 'Ej: 4421234567' },
+                    ...basicInfo
+                ];
+                if (pkg !== "Web Básica") {
+                    fields.push({ id: 'f_location_link_2', label: 'Segundo Link de Ubicación (Opcional)', placeholder: 'Pega el enlace adicional' });
+                    fields.push({ id: 'f_phrase', label: 'Frase de su elección', placeholder: 'Escribe tu frase especial...' });
+                    fields.push({ id: 'f_parents', label: 'Nombre de los Papás', placeholder: 'Nombres completos' });
+                    fields.push({ id: 'f_dresscode', label: 'Código de Vestimenta', placeholder: 'Ej: Formal, Blanco, Casual...' });
+                    fields.push({ id: 'f_photos', label: 'Fotos (Instrucción)', placeholder: 'Indica si las enviarás por WhatsApp o Drive' });
+                }
+                if (pkg === "Web Plata" || pkg === "Web Oro" || pkg === "Web Oro Plus") {
+                    fields.push({ id: 'f_passes', label: 'Lista de Pases', placeholder: 'Cantidad o lista de invitados' });
+                    fields.push({ id: 'f_godparents', label: 'Nombre de los Padrinos', placeholder: 'Nombres completos' });
+                }
+                if (pkg === "Web Oro" || pkg === "Web Oro Plus") {
+                    fields.push({ id: 'f_itinerary', label: 'Itinerario', placeholder: 'Ej: 4pm Misa, 6pm Recepción...' });
+                    fields.push({ id: 'f_gift', label: 'Mesa de Regalos / Lluvia de sobres', placeholder: 'Links o detalles' });
+                }
+                if (pkg === "Web Oro Plus") {
+                    fields.push({ id: 'f_hotel', label: 'Opciones de Hospedaje', placeholder: 'Nombres de hoteles y links' });
+                }
+            }
+
+            fields.forEach(f => {
+                const div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = `
+                    <label for="${f.id}">${f.label}</label>
+                    <input type="text" id="${f.id}" placeholder="${f.placeholder}">
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById('userName').value;
+            const type = document.getElementById('invType').value;
+            const message = document.getElementById('userMessage').value;
+            const phoneNumber = "4426084804";
+            if (!name || !type) {
+                alert("Por favor llena nombre y tipo.");
+                return;
+            }
+            const text = `Hola, me gustaría cotizar una invitación.%0A%0A*Nombre:* ${name}%0A*Paquete/Tipo:* ${type}%0A*Mensaje:* ${message}`;
+            window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+        }
+
+        function sendOrderWhatsApp() {
+            const orderName = document.getElementById('orderName').value;
+            const pkg = document.getElementById('orderPackage').value;
+            const extra = document.getElementById('extraField').value;
+            const phoneNumber = "4426084804";
+            if (!orderName || !pkg) {
+                alert("Por favor llena tu nombre y selecciona el paquete.");
+                return;
+            }
+            let detailsText = `*NUEVO PEDIDO DE:* ${orderName}%0A*PAQUETE:* ${pkg}%0A%0A*DETALLES:*%0A`;
+            const inputs = document.querySelectorAll('#dynamicFieldsContainer input');
+            inputs.forEach(input => {
+                const label = input.previousElementSibling.innerText;
+                detailsText += `• ${label}: ${input.value || 'No proporcionado'}%0A`;
+            });
+            if (extra) {
+                detailsText += `%0A*DATO EXTRA:* ${extra}`;
+            }
+            window.open(`https://wa.me/${phoneNumber}?text=${detailsText}`, '_blank');
+        }
     </script>
 </body>
 </html>
